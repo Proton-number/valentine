@@ -1,17 +1,30 @@
-import React, {lazy, Suspense} from "react";
+import React, { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
-import SignUp from "./Components/SignUp";
-import Initial from "./Components/Initial";
+const SignUp = lazy(() => import("./Components/SignUp"));
+const Initial = lazy(() => import("./Components/Initial"));
 
 function App() {
   return (
     <>
       <Router>
         <Routes>
-          <Route path="/initial" element={<Initial />} />
-          <Route path="/" element={<SignUp />} />
-          {/* <Route path="/unique/:userId" element={<Unique />} /> */}
+          <Route
+            path="/initial/:userId"
+            element={
+              <Suspense fallback={null}>
+                <Initial />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/"
+            element={
+              <Suspense fallback={null}>
+                <SignUp />
+              </Suspense>
+            }
+          />
         </Routes>
       </Router>
     </>

@@ -1,4 +1,4 @@
-import React, { Link, useParams } from "react";
+import React from "react";
 import {
   Box,
   Stack,
@@ -7,15 +7,19 @@ import {
   createTheme,
   ThemeProvider,
 } from "@mui/material";
+import { Link, useParams } from "react-router-dom";
+
 import Gif from "./Gif";
-import { useStore } from "../Store/useStore";
+import useStore from "../Store/useStore";
+import CopyLink from "./CopyLink";
 function Initial() {
   const font = createTheme({
     typography: {
       fontFamily: "Dancing Script, cursive",
     },
   });
-  const { handleButtonClick } = useStore();
+  const { handleButtonClick, user } = useStore();
+  const { userId } = useParams();
   return (
     <>
       <Stack spacing={2}>
@@ -45,11 +49,13 @@ function Initial() {
           </Button>
         </Stack>
         <Box>
-          <Link to="/">
-            <Typography sx={{ color: "black" }}>
-              Click here to get your link
-            </Typography>
-          </Link>
+          {user ? (
+            <CopyLink userId={userId} />
+          ) : (
+            <Link to="/">
+              <Typography>Click here to get your link</Typography>
+            </Link>
+          )}
         </Box>
       </Stack>
     </>

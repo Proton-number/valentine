@@ -1,6 +1,6 @@
 import React from "react";
 import { Box } from "@mui/material";
-import { useStore } from "../Store/useStore";
+import useStore from "../Store/useStore";
 
 function Gif() {
   const { gif, happy, sad } = useStore();
@@ -9,9 +9,7 @@ function Gif() {
       {gif && (
         <Box
           component="img"
-          src={
-            "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExMzA1cDBnaGo3bWtsc3g5OG05dWJhbmR0bWhtZnpmdXU0ZmVxeGF6cCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/TDMbOHni02MZM8fTgS/giphy.gif"
-          }
+          src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExMzA1cDBnaGo3bWtsc3g5OG05dWJhbmR0bWhtZnpmdXU0ZmVxeGF6cCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/TDMbOHni02MZM8fTgS/giphy.gif"
         />
       )}
       {happy && (
