@@ -10,7 +10,7 @@ function App() {
       <Router>
         <Routes>
           <Route
-            path="/initial/:userId"
+            path="/unique/:userId"
             element={
               <Suspense fallback={null}>
                 <Initial />

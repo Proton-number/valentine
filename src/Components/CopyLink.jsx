@@ -7,7 +7,7 @@ import useStore from "../Store/useStore";
 function CopyLink({ userId }) {
   const { copy, copyHandler } = useStore();
   const domain = window?.location?.origin;
-  const uniqueLink = `${domain}/initial/${userId}`;
+  const uniqueLink = `${domain}/unique/${userId}`;
 
   return (
     <Stack>
@@ -25,7 +25,7 @@ function CopyLink({ userId }) {
         {!copy && (
           <CopyToClipboard text={uniqueLink} onCopy={copyHandler}>
             <IconButton>
-              <ContentCopyIcon sx={{ color: "black" }} />
+              <ContentCopyIcon sx={{ color: "white" }} />
             </IconButton>
           </CopyToClipboard>
         )}
@@ -33,7 +33,7 @@ function CopyLink({ userId }) {
         {copy && (
           <Tooltip title="Link copied!" open={copy}>
             <IconButton disabled>
-              <ContentCopyIcon sx={{ color: "black", opacity: 0.8 }} />
+              <ContentCopyIcon sx={{ color: "white", opacity: 0.8 }} />
             </IconButton>
           </Tooltip>
         )}

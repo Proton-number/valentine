@@ -8,10 +8,10 @@ import {
   ThemeProvider,
 } from "@mui/material";
 import { Link, useParams } from "react-router-dom";
-
 import Gif from "./Gif";
 import useStore from "../Store/useStore";
 import CopyLink from "./CopyLink";
+import { color } from "framer-motion";
 function Initial() {
   const font = createTheme({
     typography: {
@@ -20,6 +20,11 @@ function Initial() {
   });
   const { handleButtonClick, user } = useStore();
   const { userId } = useParams();
+
+  const handleResponse = (response) => {
+    handleButtonClick(response, userId);
+  };
+
   return (
     <>
       <Stack spacing={2}>
@@ -36,14 +41,14 @@ function Initial() {
               },
             }}
             variant="contained"
-            onClick={() => handleButtonClick("Yes")}
+            onClick={() => handleResponse("Yes")}
           >
             Yes
           </Button>
           <Button
             color="error"
             variant="contained"
-            onClick={() => handleButtonClick("No")}
+            onClick={() => handleResponse("No")}
           >
             No
           </Button>
@@ -52,7 +57,14 @@ function Initial() {
           {user ? (
             <CopyLink userId={userId} />
           ) : (
-            <Link to="/">
+            <Link
+              to="/"
+              style={{
+                color: "white",
+                textDecoration: "none",
+                "&:hover": { color: "#6c6e71" },
+              }}
+            >
               <Typography>Click here to get your link</Typography>
             </Link>
           )}
